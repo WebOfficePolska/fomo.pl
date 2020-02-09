@@ -1,0 +1,1 @@
+about<?php /**PATH /var/www/mamezi/themosis/resources/views/about.blade.php ENDPATH**/ ?>
