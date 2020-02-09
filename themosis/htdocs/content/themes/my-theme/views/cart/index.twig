@@ -1,0 +1,195 @@
+{% extends 'layouts/default.twig' %}
+
+{% block header %}
+<header class="mobile-header">
+  <a href="{{ home_url }}" class="__logo">
+    {{ fn.include_svg('logo_sigur.svg')|raw }}
+  </a>
+</header>
+{% endblock %}
+
+{% block main %}
+<form action="{{ home_url }}order/send" method="POST">
+
+  <div class="cart-form">
+    {{ fn.csrf_field()|raw }}
+    <div class="container-fluid">
+
+      <a href="{{ home_url }}" class="__logo">
+        {{ fn.include_svg('logo_sigur.svg')|raw }}
+      </a>
+      <!-- TWOJE DANE -->
+      <section class="__cart-form-section">
+
+
+      <h4 class="__form-title">Customer information</h4>
+
+      <div class="row">
+
+        <div class="col-md-6">
+
+          <div class="form-input os-animation {% if errors.email is not empty %}error{% endif %}">
+            <input class="n-input" type="text" value="{{ order.email|default('') }}" name="email" id="cart-email" />
+            <label class="n-label" for="cart-email">
+                Your e-mail
+            </label>
+          </div>
+
+        </div>  
+        <div class="col-md-6"> 
+
+          <div class="form-input os-animation {% if errors.phone is not empty %}error{% endif %}">
+            <input class="n-input" type="text" value="{{ order.phone|default('') }}" name="phone" id="cart-phone" />
+            <label class="n-label" for="cart-phone">
+                Phone
+            </label>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="row">
+
+        <div class="col-md-6">
+
+          <div class="form-input os-animation {% if errors.firstname is not empty %}error{% endif %}">
+            <input class="n-input" type="text" value="{{ order.firstname|default('') }}" name="firstname" id="cart-firstname" />
+            <label class="n-label" for="cart-firstname">
+                First name
+            </label>
+          </div>
+
+        </div>  
+        <div class="col-md-6">
+
+          <div class="form-input os-animation {% if errors.lastname is not empty %}error{% endif %}">
+            <input class="n-input" type="text" value="{{ order.lastname|default('') }}" name="lastname" id="cart-lastname" />
+            <label class="n-label" for="cart-lastname">
+                Last name
+            </label>
+          </div>
+
+        </div>
+
+      </div>
+
+
+
+      <div class="row">
+
+        <div class="col-md-6">
+
+          <div class="form-input os-animation {% if errors.country is not empty %}error{% endif %}">
+
+
+            <input class="n-input" type="text" value="{{ order.country|default('') }}" name="country" id="cart-country" />
+            {#
+            <select class="n-input" data-value="{{ order.country|default('') }}" name="country" id="cart-country">
+              <option value="Belgium">Belgium</option>
+              <option value="Spain">Spain</option>
+              <option value="Italy">Italy</option>
+              <option value="Albania">Albania</option>
+              <option value="Andorra">Andorra</option>
+              <option value="Armenia">Armenia</option>
+              <option value="Belarus">Belarus</option>
+              <option value="Belgium">Belgium</option>
+              <option value="Bosnia And Herzegovina">Bosnia &amp; Herzegovina</option>
+              <option value="Bulgaria">Bulgaria</option>
+              <option value="Croatia">Croatia</option>
+              <option value="Cyprus">Cyprus</option>
+              <option value="Czech Republic">Czechia</option>
+              <option value="Estonia">Estonia</option>
+              <option value="Faroe Islands">Faroe Islands</option>
+              <option value="Georgia">Georgia</option>
+              <option value="Gibraltar">Gibraltar</option>
+              <option value="Greece">Greece</option>
+              <option value="Greenland">Greenland</option>
+              <option value="Guadeloupe">Guadeloupe</option>
+              <option value="Hungary">Hungary</option>
+              <option value="Iceland">Iceland</option>
+              <option value="Italy">Italy</option>
+              <option value="Latvia">Latvia</option>
+              <option value="Liechtenstein">Liechtenstein</option>
+              <option value="Lithuania">Lithuania</option>
+              <option value="Luxembourg">Luxembourg</option>
+              <option value="Malta">Malta</option>
+              <option value="Moldova, Republic of">Moldova</option>
+              <option value="Monaco">Monaco</option>
+              <option value="Montenegro">Montenegro</option>
+              <option value="North Macedonia">North Macedonia</option>
+              <option value="Poland">Poland</option>
+              <option value="Portugal">Portugal</option>
+              <option value="Romania">Romania</option>
+              <option value="San Marino">San Marino</option>
+              <option value="Serbia">Serbia</option>
+              <option value="Slovakia">Slovakia</option>
+              <option value="Slovenia">Slovenia</option>
+              <option value="Spain">Spain</option>
+              <option value="Turkey">Turkey</option>
+              <option value="Ukraine">Ukraine</option>
+              <option value="Holy See (Vatican City State)">Vatican City</option>
+            </select>
+            #}
+            <label class="n-label" for="cart-country">
+                Country
+            </label>
+          </div>
+
+        </div>  
+
+      </div>
+
+      <div class="row">
+
+        <div class="col-md-6">
+
+          <div class="form-input os-animation {% if errors.street is not empty %}error{% endif %}">
+            <input class="n-input" type="text" value="{{ order.street|default('') }}" name="street" id="cart-street" />
+            <label class="n-label" for="cart-street">
+                Street address
+            </label>
+          </div>
+        </div>  
+        <div class="col-md-6">
+
+          <div class="form-input os-animation {% if errors.postal is not empty %}error{% endif %}">
+            <input class="n-input" type="text" value="{{ order.postal|default('') }}" name="postal" id="cart-postal" />
+            <label class="n-label" for="cart-postal">
+               Postal code / Zip
+            </label>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="row">
+
+        <div class="col-md-6">
+
+          <div class="form-input os-animation {% if errors.city is not empty %}error{% endif %}">
+            <input class="n-input" type="text" value="{{ order.city|default('') }}" name="city" id="cart-city" />
+            <label class="n-label" for="cart-city">
+                Town / City
+            </label>
+          </div>
+        </div>  
+
+      </div>
+
+      </section>
+
+
+      <section class="__cart-form-section">
+        <div class="__bottom-btns">
+          <button type="submit" class="btn-primary"><span>ORDER!</span></button>
+          <a href="{{ home_url }}" class="btn-link"><span>Back to store</span></a>
+        </div>
+      </section>
+
+
+    </div>
+
+  </div><!-- end .cart-form -->
+</form>
+
+{% endblock %}

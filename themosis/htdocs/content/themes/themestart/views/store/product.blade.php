@@ -1,0 +1,4 @@
+Strona Produkt
+
+{{ dd($product) }}
+

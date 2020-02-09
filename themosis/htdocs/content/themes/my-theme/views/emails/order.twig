@@ -1,0 +1,11 @@
+{% extends 'layouts/email.twig' %}
+
+{% block preheader %}
+Dziękujemy za Twoje zamówienie. 
+{% endblock %}
+
+{% block main %}
+
+{{ include('elements/order-email.twig') }}
+
+{% endblock %}

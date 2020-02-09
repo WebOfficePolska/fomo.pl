@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="author" content="">
+
+
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="theme-color" content="#ffffff">
+
+  <meta property="og:url" content=""/>
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="" />
+  <meta property="og:description" content="" />
+  <meta property="og:image" content=""/>
+  <meta property="og:image" content=""/>
+  <meta property="og:image" content=""/>
+  <meta property="og:image" content=""/>
+
+  <title>{{ site_name }} - {{ site_description }}</title>
+
+  <link rel="icon" type="image/png" sizes="196x196" href="img/additional/icon_196x196.png">
+  <link rel="icon" type="image/png" sizes="128x128" href="img/additional/icon_128x128.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="img/additional/icon_96x96.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="img/additional/icon_32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="img/additional/icon_16x16.png">
+
+
+  <link rel="stylesheet" href="{{ assets_url }}/dist/main.css?v2" />
+
+
+</head>
+
+
+<body {{ fn.body_class() }}>
+
+  <!--[if lt IE 10]>
+  <div class="ancient">
+      <h2>:(</h2>
+      <p>Używasz <strong>przestarzałej</strong> przeglądarki. </p>
+      <p>Proszę <a href="http://browsehappy.com/">zainstaluj nowszą wersję</a>, aby poprawnie wyświetlić stronę.</p>
+  </div>
+  <![endif]-->
+
+{% if page_template is not defined or page_template != 'cart' %}
+<div class="loading-screen" id="loadScreen"></div>
+<header class="header" id="Header">
+    <div class="__top-bar">
+        <button class="burger-btn" id="burgerMenuBtn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <a href="{{ home_url }}" class="__logo">
+          {{ fn.include_svg('logo_sigur.svg')|raw }}
+        </a>
+
+        <button class="__basket-btn" id="openCart">             
+            <i class="__basket-icom">
+              {{ fn.include_svg('cart.svg')|raw }}
+            </i>
+            <span>{{ cart.products|length }}</span>
+        </button>
+
+    </div>
+
+    <div class="__menu-holder" id="mainMenu">
+        <nav class="__nav">
+            <a href="{{ home_url }}products/elke"><span>elke</span></a>
+            <a href="mailto:info@sigur.eu"><span>contact: info@sigur.eu</span></a>
+        </nav>
+        
+        <div class="__sub-nav" id="subMenu">
+            <div class="__inner">
+                <a href="{{ fn.get_privacy_policy_url() }}"><span>Privacy policy and cookies</span></a>
+            </div>
+        </div>
+        {#
+        <div class="__social" id="menuSocial">
+            <span>Follow us</span>
+            <div class="__social-items">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+        #}
+        <div class="__claim" id="menuClaim">
+            <h3>like life<br>items</h3>
+        </div>
+      
+    </div>
+
+</header>
+{% endif %}
+
+{% block header %}{% endblock %}
+
+{% if page_template is defined and page_template == 'cart' %}
+<!-- CART INNER-->
+<div class="cart -inner" id="cartInner">
+    <div class="__head">
+        <span>Basket ({{ cart.products|length }})</span>
+    </div>
+    <div class="__product-listing">
+        {{ include('elements/cart-product-listing.twig') }}
+    </div>
+    <div class="__summary">
+        {{ include('elements/cart-summary.twig') }}
+    </div>
+</div>
+{% else %}
+<div class="cart" id="cart">
+    <button type="button" class="__close-x" id="closeCartBtn">
+        <span></span>
+        <span></span>
+    </button>
+    <div class="__head">
+        <span>Basket {% if cart.products is not empty %}({{ cart.products|length }}){% endif %}</span>
+    </div>
+    <div class="__product-listing">
+        {{ include('elements/cart-product-listing.twig') }}
+    </div>
+    <div class="__summary">
+        {% if cart.products is not empty %}
+        {{ include('elements/cart-summary.twig') }}
+        <a href="{{ home_url }}basket" class="btn-primary -block"><span>Proceed to oder</span></a>
+        {% endif %}
+    </div>
+</div>
+{% endif %}
+
+
+<div class="page-wrapper" id="pageWrapper">
+{% block main %}{% endblock %}
+</div>
+
+
+
+
+
+{% if page_template is not defined or page_template != 'cart' %}
+{{ include('elements/footer.twig') }}
+{% endif %}
+
+
+<script type="text/javascript" src="{{ assets_url }}/dist/bundle.js?v2"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript" src="{{ assets_url }}/dist/cart.js"></script>
+
+
+</body>
+
+</html>	

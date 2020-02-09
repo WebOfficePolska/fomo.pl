@@ -1,0 +1,71 @@
+{% extends 'layouts/default.twig' %}
+
+
+{% block main %}
+
+
+<section class="intro-headline -dark">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 offset-lg-3">
+        <h2>
+          {{ page_title }}
+        </h2>
+          {{ page_summary|raw }}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% for c in subcategories %}
+<section class="category-head">
+  <div class="container">
+
+    <div class="row">
+      <div class="col-6 col-lg-8">
+        <h2>{{ category.name }}</h2>
+      </div>
+      <div class="col-6 col-lg-4 align-self-end">
+        <h4>{{ c.name }}</h4>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+
+<div class="container">
+
+  <div class="products grid">
+    <div class="grid-sizer"></div>
+
+      {% for p in c.products %}
+      <!-- GRID ITEM -->
+      <div class="grid-item{% if loop.index is even %} -shift{% endif %}">
+          <a href="{{ p.url }}" class="__product os-animation">
+            <div class="__product-pic">
+              <img src="{{ p.thumb }}" alt="{{ p.number }} - {{ p.type }}" />
+              {% if p.photos[1] %}
+              <div class="__overlay">
+                <img src="{{ p.photos[1].sizes.medium }}" alt="{{ p.number }} - {{ p.type }}" />                
+              </div>
+              {% endif %}
+            </div>
+            <div class="__subtitle">
+              <h4>{{ p.number }}</h4>
+              <div class="__divider"></div>
+              <h3>{{ p.type }}</h3>
+            </div>
+          </a>
+      </div>
+      <!-- END GRID ITEM -->
+      {% endfor %}
+
+  </div>
+
+</div>
+{% endfor %}
+
+
+{% endblock %}

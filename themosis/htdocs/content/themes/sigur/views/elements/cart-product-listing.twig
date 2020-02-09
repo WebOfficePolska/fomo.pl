@@ -1,0 +1,27 @@
+<div class="nano">
+    <div class="nano-content">
+
+        {% for p in cart.products %}
+        <!-- CART ITEM -->
+        <div class="cart-item">
+            <div class="__pic">
+                <a href="{{ p.url }}"><img src="{{ p.thumb }}" alt=""></a>
+            </div>
+            <div class="__desc">
+                <a href="{{ p.url }}" class="__title"><h3>{{ p.name }}<br>{{ p.number }} {{ p.type }}</h3></a>
+                <a href="{{ home_url }}cart/delete/{{ p.ID }}" class="__delete">remove</a>
+                <p>quantity</p>
+                <div class="__quantity">
+                    <button data-action="{{ home_url }}cart/remove/{{ p.ID }}" class="remove" type="button">-</button>
+                    <span>{{ cart.cart[p.ID] }}</span>
+                    <button data-action="{{ home_url }}cart/add/{{ p.ID }}" class="add" type="button">+</button>
+                </div>
+
+            </div>
+            <div class="__price">
+                <span>{{ p.price|default(base_price) }} eur</span>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>

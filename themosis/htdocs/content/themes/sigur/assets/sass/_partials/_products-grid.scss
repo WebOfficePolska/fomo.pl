@@ -1,0 +1,123 @@
+
+
+.grid {
+  padding: 20px 0 10px;
+}
+
+.grid-sizer,
+.grid-item {
+  display: block;
+  width: calc(50% - 30px);
+}
+
+.grid-item {
+  float: left;
+  background: #ffffff;
+  margin: 0 0 30px;
+  &.-shift {
+    margin: 160px 0 30px;
+  }
+}
+
+
+//////////////////
+
+.products {
+
+  a.__product {
+    display: block;
+    margin: 0 0 20px;
+    color: #000000;
+    .__product-pic {
+      display: block;
+      overflow: hidden;
+      margin: 0 0 20px;
+      background: #f1f1f1;
+      position: relative;
+      img {
+        max-width: 100%;
+        transition: all 0.5s ease;
+        position: relative;
+        z-index: 1;
+      }
+
+      .__overlay {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        z-index: 2;
+        opacity: 0;
+        top: 0;
+        left: 0;
+        transition: 500ms opacity ease;
+        img {
+          display: block;
+          object-position: cover;
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+    &:hover {
+      text-decoration: none;
+       .__product-pic .__overlay {
+        opacity: 1;
+          img {
+            transform: scale(1.05);
+          }        
+       }
+    }
+
+    .__subtitle {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      h4 {
+        width: 33%;
+        font-size: 2.6rem;
+        margin: 0;
+        padding: 0 20px;
+        font-weight: 700;
+        letter-spacing: 2px;
+        text-align: right;
+      }
+      .__divider {
+        width: 106px;
+        height: 4px;
+        background: #000000;
+      }
+      h3 {
+        width: 33%;
+        font-size: 2.6rem;
+        margin: 0;
+        padding: 0 20px;
+        font-weight: 600;
+        text-align: left;
+      }
+    }
+
+    .__type {
+      font-size: 1.6rem;
+      margin: 20px 0 0 0;
+      text-align: center;
+    }
+
+
+
+  }
+
+}
+
+
+@media (max-width: 768px) {
+
+  .grid-sizer,
+  .grid-item {
+    width: 100%;
+  }
+
+  .grid-item.-shift {
+    margin-top: 0 !important;
+  }
+
+}

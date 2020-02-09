@@ -1,0 +1,19 @@
+{% extends 'layouts/default.twig' %}
+
+
+{% block main %}
+
+
+<div class="single-page" id="singlePage">
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-10 offset-lg-1">
+      	<article>{{ fn.wpautop(page.post_content)|raw }}</article>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}

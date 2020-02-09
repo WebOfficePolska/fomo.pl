@@ -1,0 +1,148 @@
+{% extends 'layouts/default.twig' %}
+
+
+{% block main %}
+
+	
+
+<div class="product-page" id="productPage">
+
+  <section class="__pic-gallery owl-carousel owl-theme d-md-none">
+    {% for p in product.photos %}
+    <div class="item">
+      <img src="{{ p.sizes.large }}" alt="">
+    </div>
+    {% endfor %}
+  </section>
+
+  <section class="__pic-flow d-none d-md-block">
+    {% for p in product.photos %}
+    <img src="{{ p.sizes.large }}" alt="{{ p.alt }}" id="list-item-{{ loop.index }}">
+    {% endfor %}
+  </section>
+
+  
+
+
+  <section class="__desc d-none d-md-flex" id="productDesc">
+
+      <div id="picPager" class="__pic-pager list-group">
+    {% for p in product.photos %}
+        <a class="list-group-item  smoothscroll" href="#list-item-{{ loop.index }}"></a>
+    {% endfor %}
+      </div>
+
+      <h2>{{ product.name }}</h2>
+
+      <div class="__subtitle">
+        <h4>{{ product.number }}</h4>
+        <div class="__divider"></div>
+        <h3>{{ product.type }}</h3>
+      </div>
+
+      <div class="__price">
+        <span>{{ product.price|default(base_price)|number_format(2, '.', ' ') }} eur</span>
+      </div>
+
+      <div class="__text">
+        <p>
+          {{ product.post_content|raw }}
+        </p>
+      </div>
+
+      <!-- <div class="__colors">
+        <a href="#" style="background-color: #000000"></a>
+        <a href="#" style="background-color: #255b51"></a>
+        <a href="#" style="background-color: pink"></a>
+      </div> -->
+
+      <div class="__product-btns">
+        <a href="{{ home_url }}cart/add/{{ product.ID }}" class="btn-addtocart">
+          <span>pre-order</span>
+        </a>
+        <span class="__delivery-text">
+          lead time: {{ product.delivery_time|default(base_delivery_time) }}
+        </span>
+      </div>
+
+      {% if product.product_sheet or default_product_sheet %}
+      <div class="__add-desc">
+        <p><a href="{{ product.product_sheet|default(default_product_sheet) }}" download>product card</a></p>
+      </div>
+      {% endif %}
+
+    
+  </section>
+
+
+
+</div>
+
+<section class="intro-headline">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 offset-lg-3">
+        <h2>
+          {{ main_category.category_title }}
+        </h2>
+        {{ main_category.category_content|raw }}
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="product-viz ">
+    {% if product.category_photo %}
+    <img src="{{ product.category_photo.url }}" alt="" />
+    {% else %}
+    <img src="{{ main_category.category_photo.url }}" alt="" />
+    {% endif %}
+</section>
+
+<section class="intro-headline -title">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 offset-lg-3">
+        <h2>
+          more from {{ main_category.name }}
+        </h2>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<div class="container">
+
+  <div class="products grid">
+    <div class="grid-sizer"></div>
+
+      {% for p in other_products %}
+      <!-- GRID ITEM -->
+      <div class="grid-item{% if loop.index is even %} -shift{% endif %}">
+          <a href="{{ p.url }}" class="__product os-animation">
+            <div class="__product-pic">
+              <img src="{{ p.thumb }}" alt="{{ p.number }} - {{ p.type }}" />
+            </div>
+            <div class="__subtitle">
+              <h4>{{ p.number }}</h4>
+              <div class="__divider"></div>
+              <h3>{{ p.type }}</h3>
+            </div>
+            <h5 class="__type">{% for c in p.terms.product_category if c.term_id != main_category.term_id  %}{{ c.name }} {% endfor %}</h5>
+          </a>
+      </div>
+      <!-- END GRID ITEM -->
+      {% endfor %}
+
+
+
+
+
+
+
+  </div>
+
+</div>
+
+{% endblock %}

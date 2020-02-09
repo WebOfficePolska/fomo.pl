@@ -1,0 +1,179 @@
+// import fonts
+
+@import url('https://fonts.googleapis.com/css?family=Roboto+Mono');
+@import 'fonts';
+
+// import libraries and 3rd party
+
+@import '_font-awesome/fontawesome.scss';
+@import '_font-awesome/brands.scss';
+@import '_font-awesome/solid.scss';
+
+@import '_libraries/bootstrap.min';
+@import '_libraries/owlcarousel';
+@import '_libraries/owlthemedefault';
+@import '_libraries/fancybox';
+@import '_libraries/nanoscroller';
+@import '_libraries/animate';
+
+
+
+// global vars
+$font-biotif: 'Biotif', Arial;
+$font-roboto: 'Roboto Mono', monospace;
+$color-blue: #0000ff;
+$color-red: #ef445d;
+
+
+// common
+
+
+html {
+  font-size: 62.5%;
+  height:100%;
+}
+
+
+body {
+  font-family: $font-biotif;
+  font-size: 1.8rem;
+  font-weight: 400;
+  line-height: 1.4;
+  background: #ffffff;
+  color: #000000;
+  overflow-x: hidden;
+  padding:0px;
+  margin:0px;
+}
+
+body.disable-scroll {
+  overflow-y: hidden;
+}
+
+.body-fade-bg {
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  z-index: 101;
+  background: #000000;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  &.active {
+    opacity: 0.5;
+  }
+}
+
+
+strong {
+  font-weight: 700;
+}
+
+
+
+button, button:focus {
+  outline: none !important;
+}
+
+.os-animation {
+  opacity: 0; }
+
+.os-animation.animated {
+  opacity: 1; }
+
+.loading-screen {
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  bottom:0px;
+  left:0px;
+  z-index: 1000;
+  background: #ffffff;
+}
+
+.ancient {
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  padding: 40px;
+  background: #ffffff;
+  color: $color-blue;
+  z-index: 9999;
+  img {
+    width: 100px;
+    margin-bottom: 100px;
+  } 
+  h2 {
+    font-weight: 600;
+    font-size: 5.0rem;
+  }
+  a {
+
+  }
+}
+
+.page-wrapper {
+  position: relative;
+  width: 100%;
+  left: 0px;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #ececec; 
+}
+
+::-webkit-scrollbar-thumb {
+  background: #000000; 
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #000000; 
+  opacity: 0.8;
+}
+
+.iScrollVerticalScrollbar.iScrollLoneScrollbar {
+  width: 8px !important;
+  bottom: 0px !important;
+  top: 0px !important;
+  right: 0px !important;
+  background: #ececec !important;
+}
+.iScrollIndicator {
+    background: $color-blue !important;
+    border: none !important;
+    border-radius: 0px !important;
+}
+
+
+
+// MOBILE
+
+@media (max-width: 767px) {
+
+}
+
+//Imports
+
+@import '_partials/misc';
+@import '_partials/header';
+@import '_partials/cart';
+@import '_partials/forms';
+@import '_partials/homepage';
+@import '_partials/products-listing';
+@import '_partials/product-category';
+@import '_partials/products-grid';
+@import '_partials/product-page';
+@import '_partials/page';
+@import '_partials/footer';
+
+
+
+
+

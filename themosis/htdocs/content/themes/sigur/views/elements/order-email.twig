@@ -1,0 +1,58 @@
+<h1 style="font-weight: bold;font-size: 34px; line-height: 34px; text-transform: uppercase; margin: 30px 0;">Thanks for your order! </h1>
+
+<p style="font-size: 16px; line-height: 22px;text-align: center;">Your order confirmation can be found below. We will send you an email with a payment and shipment info.</p>
+
+<p style="font-size: 13px; line-height: 22px;text-align: center;">If you have any questions please don't hesitate to let us know at info@sigur.eu</p>
+
+
+<h2 style="font-weight: bold; font-size: 21px; line-height: 34px; text-transform: uppercase; margin: 30px 0; text-align: center;">ORDER DETAILS</h2>
+
+<table id="cart" class="cart table">
+	<tbody>
+		{% for p in cart.products %}
+		<tr>
+			<td>
+				<a href="{{ p.url }}"><img src="{{ p.thumb }}" width="100" alt=""></a>
+			</td>
+			<td class="">
+				<h3>{{ p.name }}<br>{{ p.number }} {{ p.type }}
+			</td>
+			<td class="quantity-col">
+				{{ cart.cart[p.ID] }} pcs.
+			</td>
+			<td class="price-col ar">
+				{{ p.price|default(base_price) * cart.cart[p.ID] }} eur
+			</td>
+		</tr>
+        {% endfor %}
+	</tbody>
+	<tfoot>
+		<tr>
+			<td class="">
+				<strong>Total</strong>
+			</td>
+			<td colspan="2">
+				
+			</td>
+			<td class="ar">
+				<span class="delivery-cost">{{ cart.total }}</span> eur
+			</td>
+		</tr>
+	</tfoot>
+</table><!-- end #cart -->
+
+<div class="row">
+	<div class="col-md-12">
+		<h3 class="section-title">Customer information</h3>
+		Your e-mail: {{ order.email }}<br />
+		Phone: {{ order.phone }}<br />
+		First name: {{ order.firstname }}<br />
+		Last name: {{ order.lastname }}<br />
+		Country: {{ order.country }}<br />
+		Street address: {{ order.street }}<br />
+		Postal code / Zip: {{ order.postal }}<br />
+		Town / City: {{ order.city }}<br />
+		
+	</div><!-- end .col-md-12 -->
+
+</div><!-- end .row -->

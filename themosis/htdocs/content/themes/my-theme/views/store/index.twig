@@ -1,0 +1,43 @@
+{% extends 'layouts/default.twig' %}
+
+
+{% block main %}
+
+	
+<section class="intro-headline -dark">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 offset-lg-3">
+        <h2>
+          {{ page_title }}
+        </h2>
+          {{ page_summary|raw }}
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="products-list">
+
+  <div class="container-fluid">
+    <div class="row no-gutters">
+
+      {% for c in categories %}
+      <div class="col-lg-6">
+        <a href="{{ c.url }}" class="__product-item">
+          <div class="__pic">
+            <img src="{{ c.category_photo.sizes.large }}" alt="{{ c.name }}">
+          </div>
+        </a>
+      </div>
+    {% endfor %}
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+{% endblock %}

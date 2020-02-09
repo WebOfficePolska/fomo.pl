@@ -1,0 +1,55 @@
+.falling-snow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: inline-block;
+  max-width: 100%;
+  height: 100%;
+  z-index: -100;
+}
+
+.falling-snow img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.falling-snow i:after,
+.falling-snow i:before {
+  content: "";
+}
+
+.falling-snow i:after,
+.falling-snow i:before,
+.falling-snow i {
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+/*.falling-snow i:after {
+  background__: url("images/drops__.jpg") repeat 0px 0px;
+  animation__: falling-down-snow 111s linear infinite;
+}
+
+.falling-snow i:before {
+  background__: url("images/pattern_tyl.jpg") repeat 0px 0px;
+  animation__: falling-down-snow 211s linear infinite;
+}
+*/
+.falling-snow i {
+  background: url("../images/drops.jpg") repeat 0px 0px;
+  animation: falling-down-snow 211s linear infinite;
+}
+
+@keyframes falling-down-snow {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 0px 4925px;
+  }
+}
